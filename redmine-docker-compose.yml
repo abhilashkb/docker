@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: tV8uzZxQa
+      MYSQL_DATABASE: redmine
+    volumes:
+            - 'mysql_data:/var/lib/mysql'
+
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_MYSQL: db
+      REDMINE_USERNAME: admin
+      REDMINE_PASSWORD: Mv5nM0IXtCsQg
+      REDMINE_DB_PASSWORD: tV8uzZxQa
+    volumes:
+            - 'redmine_data:/usr/src/redmine/files'
+
+volumes:
+  mysql_data:
+    driver: local
+  redmine_data:
+    driver: local
