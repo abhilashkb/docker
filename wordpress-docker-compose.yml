@@ -1,0 +1,22 @@
+version: "2"
+services:
+    wordpress:
+        image:wordpress
+        ports:
+            - 8080:80
+        environment: 
+            WORDPRESS_DB_HOST: mysql
+            WORDPRESS_DB_NAME: wordpress
+            WORDPRESS_DB_USER: wpuser
+            WORDPRESS_DB_PASSWORD: examplepass
+        volumes:
+            ./wordpress_data:/var/www/
+    mysql:
+        image: mariadb
+        environment:
+            MYSQL_ROOT_PASSWORD: mypasswordq
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wpuser
+            MYSQL_PASSWORD: examplepass
+        volumes:
+            ./mysql_data:/var/lib/mysql
